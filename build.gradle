@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id "war"
+}
+
+apply plugin : "war"
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def springVersion = '6.0.16'
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // 서블릿
+    compileOnly "jakarta.servlet:jakarta.servlet-api:6.0.0"
+
+    // SpringFramework
+    implementation "org.springframework:spring-aop:${springVersion}"
+    implementation "org.springframework:spring-beans:${springVersion}"
+    implementation "org.springframework:spring-context:${springVersion}"
+    implementation "org.springframework:spring-core:${springVersion}"
+    implementation "org.springframework:spring-expression:${springVersion}"
+    implementation "org.springframework:spring-jcl:${springVersion}"
+    implementation "org.springframework:spring-tx:${springVersion}"
+    implementation "org.springframework:spring-web:${springVersion}"
+    implementation "org.springframework:spring-webmvc:${springVersion}"
+    implementation "org.springframework:spring-jdbc:${springVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
