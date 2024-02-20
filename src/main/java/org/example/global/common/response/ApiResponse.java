@@ -1,4 +1,4 @@
-package org.example.domain.model;
+package org.example.global.common.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
