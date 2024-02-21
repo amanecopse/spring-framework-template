@@ -2,17 +2,35 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/data/jpa
+		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 ">
+<!--    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">-->
+<!--        <property name="ignoreResourceNotFound" value="true" />-->
+<!--        <property name="ignoreUnresolvablePlaceholders" value="true" />-->
+<!--        <property name="locations">-->
+<!--            <list>-->
+<!--                <value>classpath:config/application.properties</value>-->
+<!--                <value>classpath:config/db.properties</value>-->
+<!--                <value>classpath:config/swagger.properties</value>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
 
-    <!-- @Service, @Repository만 include -->
+    <jpa:repositories base-package="**.dao" />
+    
+    <!-- @Controller 외에 스캔 -->
     <context:component-scan base-package="org.example" use-default-filters="true">
         <!-- Controller는 자동 스캔에 포함시키지 않는다. -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="regex" expression="org\.example\.global\.config\.filter\..*"/>
+        <context:exclude-filter type="regex" expression="org\.example\.global\.config\.mvc\..*"/>
     </context:component-scan>
 
 </beans>

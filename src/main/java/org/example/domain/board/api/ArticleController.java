@@ -1,9 +1,9 @@
 package org.example.domain.board.api;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.example.domain.board.application.ArticleService;
-import org.example.domain.model.ApiResponse;
+import org.example.global.common.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/board/articles")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ArticleController {
-    private ArticleService articleService;
+    private final ArticleService articleService;
     @GetMapping
     public ResponseEntity<ApiResponse<List<String>>> getAll() {
         List<String> result = articleService.getAll();
@@ -25,7 +25,7 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> getById(@PathVariable("id") long id) {
+    public ResponseEntity<ApiResponse<String>> getById(@PathVariable("id") Long id) {
         String result = articleService.getById(id);
         return ResponseEntity.ok(ApiResponse.success(result));
     }
@@ -39,13 +39,13 @@ public class ArticleController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable("id") long id) {
+    public ResponseEntity<Void> update(@PathVariable("id") Long id) {
         articleService.update(id);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         articleService.delete(id);
         return ResponseEntity.ok().build();
     }

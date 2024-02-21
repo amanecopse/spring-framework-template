@@ -24,7 +24,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySources({
         @PropertySource("classpath:config/db.properties"),
-        @PropertySource("classpath:config/application.properties")
+        @PropertySource("classpath:config/application.properties"),
+        @PropertySource("classpath:config/swagger.properties")
 })
 @AllArgsConstructor
 public class DbConfig {

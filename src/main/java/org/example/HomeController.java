@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping
 public class HomeController {
-    @GetMapping("")
+    @GetMapping
     public String exampleMain() {
         return "home";
     }
