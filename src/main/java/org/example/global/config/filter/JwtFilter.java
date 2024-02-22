@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 public class JwtFilter extends BasicAuthenticationFilter {
     private final TokenProvider tokenProvider;
 
-    public JwtFilter(TokenProvider tokenProvider, AuthenticationManager authenticationManager){
+    public JwtFilter(TokenProvider tokenProvider, AuthenticationManager authenticationManager) {
         super(authenticationManager);
         this.tokenProvider = tokenProvider;
     }

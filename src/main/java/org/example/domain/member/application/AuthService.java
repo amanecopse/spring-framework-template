@@ -2,8 +2,8 @@ package org.example.domain.member.application;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.member.dao.UserDao;
-import org.example.domain.member.dto.SignupRequest;
 import org.example.domain.member.dto.LoginRequest;
+import org.example.domain.member.dto.SignupRequest;
 import org.example.domain.member.dto.UserMapper;
 import org.example.global.config.security.TokenProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

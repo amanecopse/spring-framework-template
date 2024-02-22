@@ -37,8 +37,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class OpenApiConfig {
     @Autowired
     Environment env;
+
     @Bean
-    OpenAPI openAPI(){
+    OpenAPI openAPI() {
         String schemeName = "Authorization";
         SecurityRequirement securityRequirement = new SecurityRequirement().addList(schemeName);
         Components components = new Components();

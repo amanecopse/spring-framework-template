@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.example.domain.model.BaseEntity;
 
 @Getter
@@ -36,6 +35,13 @@ public class UserToRole extends BaseEntity {
     @JoinColumn(nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Role role;
 
+    public static UserToRole relate(User user, Role role) {
+        UserToRole userToRole = new UserToRole();
+        userToRole.setUser(user);
+        userToRole.setRole(role);
+        return userToRole;
+    }
+
     public void setUser(User user) {
         if (this.user != null) {
             this.user.getUserToRoles().remove(this);
@@ -52,14 +58,7 @@ public class UserToRole extends BaseEntity {
         this.role.getUserToRoles().add(this);
     }
 
-    public static UserToRole relate(User user, Role role){
-        UserToRole userToRole = new UserToRole();
-        userToRole.setUser(user);
-        userToRole.setRole(role);
-        return userToRole;
-    }
-
-    public String getRoleName(){
+    public String getRoleName() {
         return this.role.getValue().name();
     }
 }

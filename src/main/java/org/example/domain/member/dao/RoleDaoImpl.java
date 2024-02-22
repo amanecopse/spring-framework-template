@@ -4,9 +4,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.member.domain.QRole;
-import org.example.domain.member.domain.QUser;
 import org.example.domain.member.domain.Role;
-import org.example.domain.member.domain.User;
 import org.example.domain.member.model.RoleEnum;
 
 @RequiredArgsConstructor

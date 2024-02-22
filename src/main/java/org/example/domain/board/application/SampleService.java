@@ -2,7 +2,6 @@ package org.example.domain.board.application;
 
 import jakarta.persistence.EntityNotFoundException;
 import java.util.Optional;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.board.dao.SampleDao;
 import org.example.domain.board.domain.Sample;
@@ -22,39 +21,40 @@ import org.springframework.transaction.annotation.Transactional;
 public class SampleService {
     private final SampleDao sampleDao;
     private final SampleMapper sampleMapper;
-    public Page<SampleResponse> getAll(Pageable pageable){
+
+    public Page<SampleResponse> getAll(Pageable pageable) {
         return sampleDao.findAll(pageable).map(SampleResponse::new);
     }
 
-    public Page<SampleResponse> search(SampleSearchRequest request, SearchFilter filter, Pageable pageable){
+    public Page<SampleResponse> search(SampleSearchRequest request, SearchFilter filter, Pageable pageable) {
         return sampleDao.search(request, filter, pageable).map(SampleResponse::new);
     }
 
-    public SampleResponse getById(Long id){
+    public SampleResponse getById(Long id) {
         Sample sample = findById(id);
         return new SampleResponse(sample);
     }
 
-    public void save(SampleCreateRequest request){
+    public void save(SampleCreateRequest request) {
         sampleDao.save(sampleMapper.toEntity(request));
     }
 
     @Transactional
-    public void update(Long id, SampleUpdateRequest request){
+    public void update(Long id, SampleUpdateRequest request) {
         Sample sample = findById(id);
         sampleMapper.updateSampleFromDto(request, sample);
         sampleDao.save(sample);
     }
 
     @Transactional
-    public void delete(Long id){
+    public void delete(Long id) {
         Sample sample = findById(id);
         sampleDao.delete(sample);
     }
 
-    private Sample findById(Long id){
+    private Sample findById(Long id) {
         Optional<Sample> sample = sampleDao.findById(id);
-        if (sample.isEmpty()){
+        if (sample.isEmpty()) {
             throw new EntityNotFoundException("존재하지 않는 리소스");
         }
         return sample.get();

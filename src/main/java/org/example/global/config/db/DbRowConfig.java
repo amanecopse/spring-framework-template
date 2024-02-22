@@ -23,7 +23,7 @@ public class DbRowConfig implements InitializingBean {
         Arrays.stream(RoleEnum.values()).forEach(this::insertRole);
     }
 
-    private void insertRole(RoleEnum value){
+    private void insertRole(RoleEnum value) {
         if (roleDao.findByValue(value).isEmpty()) {
             trySave(roleDao, Role.builder()
                     .value(value)
@@ -31,7 +31,7 @@ public class DbRowConfig implements InitializingBean {
         }
     }
 
-    private <T> void trySave(JpaRepository<T, Long> dao, T entity){
+    private <T> void trySave(JpaRepository<T, Long> dao, T entity) {
         try {
             dao.save(entity);
         } catch (Exception e) {

@@ -1,6 +1,5 @@
 package org.example.domain.member.dao;
 
-import java.util.List;
 import java.util.Optional;
 import org.example.domain.member.domain.Role;
 import org.example.domain.member.model.RoleEnum;
@@ -13,6 +12,7 @@ public interface RoleDao extends JpaRepository<Role, Long>, RoleDaoCustom {
     @Override
     @NonNull
     Page<Role> findAll(@NonNull Pageable pageable);
+
     @Override
     @NonNull
     Optional<Role> findById(@NonNull Long id);

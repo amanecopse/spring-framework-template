@@ -5,14 +5,12 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.example.domain.board.domain.Sample;
 
 @AllArgsConstructor
 @Data
 @Builder
-public class SampleResponse{
+public class SampleResponse {
     Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")

@@ -1,8 +1,6 @@
 package org.example.domain.member.dao;
 
-import java.util.List;
 import java.util.Optional;
-import org.example.domain.member.domain.Role;
 import org.example.domain.member.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +11,7 @@ public interface UserDao extends JpaRepository<User, Long>, UserDaoCustom {
     @Override
     @NonNull
     Page<User> findAll(@NonNull Pageable pageable);
+
     @Override
     @NonNull
     Optional<User> findById(@NonNull Long id);

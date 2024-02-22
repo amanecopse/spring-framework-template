@@ -1,14 +1,9 @@
 package org.example.global.error;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.UnsupportedJwtException;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.stream.Collectors;
 import org.example.domain.member.exception.LoginFailedException;
-import org.example.domain.member.exception.LoginRequiredException;
-import org.example.domain.member.exception.UserNotAllowedException;
 import org.example.global.common.response.ApiResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,7 +11,6 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.lang.NonNull;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -27,7 +21,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(@NonNull HttpMessageNotReadableException ex,
-                                                                  @NonNull HttpHeaders headers, @NonNull HttpStatusCode status,
+                                                                  @NonNull HttpHeaders headers,
+                                                                  @NonNull HttpStatusCode status,
                                                                   @NonNull WebRequest request) {
         logger.error("message", ex);
         String message = ex.getCause().getMessage();
@@ -41,11 +36,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(@NonNull MethodArgumentNotValidException ex,
-                                                                  @NonNull HttpHeaders headers, @NonNull HttpStatusCode status,
+                                                                  @NonNull HttpHeaders headers,
+                                                                  @NonNull HttpStatusCode status,
                                                                   @NonNull WebRequest request) {
         logger.error("message", ex);
         String message = ex.getBindingResult().getFieldErrors().stream()
-                .map((error)->"%s: [%s]".formatted(error.getField(), error.getDefaultMessage()))
+                .map((error) -> "%s: [%s]".formatted(error.getField(), error.getDefaultMessage()))
                 .collect(Collectors.joining(",\n"));
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -53,7 +49,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})
-    ResponseEntity<ApiResponse<Void>> handleBadRequestException(RuntimeException exception){
+    ResponseEntity<ApiResponse<Void>> handleBadRequestException(RuntimeException exception) {
         logger.error("message", exception);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponse.error(exception.getMessage()));
@@ -67,7 +63,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 //    }
 
     @ExceptionHandler(LoginFailedException.class)
-    ResponseEntity<ApiResponse<Void>> handleUnauthorizedException(LoginFailedException exception){
+    ResponseEntity<ApiResponse<Void>> handleUnauthorizedException(LoginFailedException exception) {
         logger.error("message", exception);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(ApiResponse.error(exception.getMessage()));
@@ -81,7 +77,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 //    }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    ResponseEntity<ApiResponse<Void>> handleForbiddenException(EntityNotFoundException exception){
+    ResponseEntity<ApiResponse<Void>> handleForbiddenException(EntityNotFoundException exception) {
         logger.error("message", exception);
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error(exception.getMessage()));
@@ -95,7 +91,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 //    }
 
     @ExceptionHandler(Exception.class)
-    ResponseEntity<ApiResponse<Void>> handleGlobalException(Exception exception){
+    ResponseEntity<ApiResponse<Void>> handleGlobalException(Exception exception) {
         logger.error("message", exception);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ApiResponse.error("서버 내부 에러"));

@@ -12,16 +12,16 @@ public enum RoleEnum {
     ROLE_USER(0),
     ROLE_ADMIN(1);
 
-    private final int value;
     private static final Map<Integer, RoleEnum> valueToName =
             Collections.unmodifiableMap(Stream.of(values())
                     .collect(Collectors.toMap(RoleEnum::getValue, Function.identity())));
+    private final int value;
 
     RoleEnum(int value) {
         this.value = value;
     }
 
-    public static RoleEnum getByValue(int value){
+    public static RoleEnum getByValue(int value) {
         return valueToName.get(value);
     }
 }

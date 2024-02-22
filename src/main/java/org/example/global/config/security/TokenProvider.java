@@ -11,7 +11,6 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.example.domain.member.dao.UserDao;
@@ -33,6 +32,7 @@ public class TokenProvider {
     private final Long tokenValidityInSeconds;
     private final UserDao userDao;
     private final UserMapper userMapper;
+
     public TokenProvider(Environment env, UserDao userDao, UserMapper userMapper) {
         String secret = env.getProperty("jwt.secret");
         this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
@@ -87,7 +87,7 @@ public class TokenProvider {
         return claims;
     }
 
-    private User findUserByEmail(String email){
+    private User findUserByEmail(String email) {
         Optional<User> user = userDao.findByEmail(email);
         if (user.isEmpty()) {
             throw new LoginRequiredException();

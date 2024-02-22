@@ -1,10 +1,6 @@
 package org.example.sample;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.board.domain.QSample;
-import org.example.domain.board.domain.Sample;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

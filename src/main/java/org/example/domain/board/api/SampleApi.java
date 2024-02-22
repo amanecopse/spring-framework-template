@@ -35,7 +35,8 @@ public class SampleApi {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<ApiResponse<Page<SampleResponse>>> search(SampleSearchRequest request, SearchFilter filter, @PageableDefault Pageable pageable) {
+    public ResponseEntity<ApiResponse<Page<SampleResponse>>> search(SampleSearchRequest request, SearchFilter filter,
+                                                                    @PageableDefault Pageable pageable) {
         Page<SampleResponse> result = sampleService.search(request, filter, pageable);
         return ResponseEntity.ok(ApiResponse.success(result));
     }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ArticleApi {
     private final ArticleService articleService;
+
     @GetMapping
     public ResponseEntity<ApiResponse<List<String>>> getAll() {
         List<String> result = articleService.getAll();
