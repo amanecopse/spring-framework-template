@@ -15,6 +15,8 @@ public interface UserMapper {
     @Mapping(target = "authorities", source = "userToRoles", qualifiedByName = "getAuthorities")
     UserDetailsImpl toPrinciple(User user);
 
+    User toEntity(SignupRequest request);
+
     @Named("getAuthorities")
     default List<SimpleGrantedAuthority> getAuthorities(List<UserToRole> userToRoles){
         return userToRoles.stream().map((userToRole -> {

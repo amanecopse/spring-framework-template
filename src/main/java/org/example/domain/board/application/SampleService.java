@@ -3,6 +3,7 @@ package org.example.domain.board.application;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.example.domain.board.dao.SampleDao;
 import org.example.domain.board.domain.Sample;
 import org.example.domain.board.dto.SampleCreateRequest;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SampleService {
     private final SampleDao sampleDao;
     private final SampleMapper sampleMapper;
