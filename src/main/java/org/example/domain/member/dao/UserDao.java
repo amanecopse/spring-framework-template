@@ -3,20 +3,20 @@ package org.example.domain.member.dao;
 import java.util.List;
 import java.util.Optional;
 import org.example.domain.member.domain.Role;
-import org.example.domain.member.model.RoleEnum;
+import org.example.domain.member.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 
-public interface RoleDao extends JpaRepository<Role, Long>, RoleDaoCustom {
+public interface UserDao extends JpaRepository<User, Long>, UserDaoCustom {
     @Override
     @NonNull
-    Page<Role> findAll(@NonNull Pageable pageable);
+    Page<User> findAll(@NonNull Pageable pageable);
     @Override
     @NonNull
-    Optional<Role> findById(@NonNull Long id);
+    Optional<User> findById(@NonNull Long id);
 
     @Override
-    Optional<Role> findByValue(RoleEnum value);
+    Optional<User> findByEmail(String email);
 }

@@ -1,6 +1,9 @@
 package org.example.global.error;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.stream.Collectors;
 import org.example.domain.member.exception.LoginFailedException;
@@ -13,6 +16,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.lang.NonNull;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -55,12 +59,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(ApiResponse.error(exception.getMessage()));
     }
 
-    @ExceptionHandler(LoginRequiredException.class)
-    ResponseEntity<ApiResponse<Void>> handleUnauthorizedException(LoginRequiredException exception){
-        logger.error("message", exception);
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(ApiResponse.error(exception.getMessage()));
-    }
+//    @ExceptionHandler({LoginRequiredException.class, InsufficientAuthenticationException.class})
+//    ResponseEntity<ApiResponse<Void>> handleUnauthorizedException(LoginRequiredException exception){
+//        logger.error("message", exception);
+//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+//                .body(ApiResponse.error(exception.getMessage()));
+//    }
 
     @ExceptionHandler(LoginFailedException.class)
     ResponseEntity<ApiResponse<Void>> handleUnauthorizedException(LoginFailedException exception){
@@ -69,12 +73,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(ApiResponse.error(exception.getMessage()));
     }
 
-    @ExceptionHandler(UserNotAllowedException.class)
-    ResponseEntity<ApiResponse<Void>> handleForbiddenException(UserNotAllowedException exception){
-        logger.error("message", exception);
-        return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(ApiResponse.error(exception.getMessage()));
-    }
+//    @ExceptionHandler(UserNotAllowedException.class)
+//    ResponseEntity<ApiResponse<Void>> handleForbiddenException(UserNotAllowedException exception){
+//        logger.error("message", exception);
+//        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+//                .body(ApiResponse.error(exception.getMessage()));
+//    }
 
     @ExceptionHandler(EntityNotFoundException.class)
     ResponseEntity<ApiResponse<Void>> handleForbiddenException(EntityNotFoundException exception){
@@ -82,6 +86,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error(exception.getMessage()));
     }
+
+//    @ExceptionHandler({MalformedJwtException.class, ExpiredJwtException.class, UnsupportedJwtException.class})
+//    ResponseEntity<ApiResponse<Void>> handleJwtException(Exception exception){
+//        logger.error("message", exception);
+//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+//                .body(ApiResponse.error(exception.getMessage()));
+//    }
 
     @ExceptionHandler(Exception.class)
     ResponseEntity<ApiResponse<Void>> handleGlobalException(Exception exception){

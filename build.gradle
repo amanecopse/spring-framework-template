@@ -101,6 +101,11 @@ dependencies {
     // Swagger
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0"
     implementation "org.webjars:webjars-locator-core:0.55" // 웹관련 js 라이브러리를 jar로 패키징한 것 swagger 2.1.0 이상부터 따로 넣어야 함
+
+    // Jwt
+    implementation("io.jsonwebtoken:jjwt-api:0.11.2")
+    implementation("io.jsonwebtoken:jjwt-impl:0.11.2")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.11.2")
 }
 
 test {

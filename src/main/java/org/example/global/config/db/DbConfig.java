@@ -1,4 +1,4 @@
-package org.example.global.config;
+package org.example.global.config.db;
 
 import jakarta.persistence.EntityManagerFactory;
 import java.util.Properties;
@@ -22,11 +22,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories
 @EnableTransactionManagement
-@PropertySources({
-        @PropertySource("classpath:config/db.properties"),
-        @PropertySource("classpath:config/application.properties"),
-        @PropertySource("classpath:config/swagger.properties")
-})
 @AllArgsConstructor
 public class DbConfig {
     Environment env;

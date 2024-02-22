@@ -18,7 +18,6 @@
     <!-- static 정적 자원( css, js, img ) -->
     <mvc:resources location="classpath:/static/" mapping="/static/**"/>
 
-    <context:component-scan base-package="org.example.global.config.filter" use-default-filters="true"/>
     <context:component-scan base-package="org.example.global.config.mvc" use-default-filters="true"/>
 
     <context:component-scan base-package="org.example" use-default-filters="true">

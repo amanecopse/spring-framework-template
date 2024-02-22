@@ -2,7 +2,12 @@ package org.example.global.config.mvc;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.security.SecurityScheme.Type;
+import org.example.global.util.Constant;
 import org.springdoc.core.configuration.SpringDocConfiguration;
 import org.springdoc.core.properties.SpringDocConfigProperties;
 import org.springdoc.core.properties.SwaggerUiConfigProperties;
@@ -34,6 +39,18 @@ public class OpenApiConfig {
     Environment env;
     @Bean
     OpenAPI openAPI(){
-        return new OpenAPI();
+        String schemeName = "Authorization";
+        SecurityRequirement securityRequirement = new SecurityRequirement().addList(schemeName);
+        Components components = new Components();
+        components.addSecuritySchemes(
+                schemeName, new SecurityScheme()
+                        .name(schemeName)
+                        .type(Type.HTTP)
+                        .scheme(Constant.BEARER_TOKEN_PREFIX)
+                        .bearerFormat("JWT")
+        );
+        return new OpenAPI()
+                .addSecurityItem(securityRequirement)
+                .components(components);
     }
 }

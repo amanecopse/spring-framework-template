@@ -58,4 +58,8 @@ public class UserToRole extends BaseEntity {
         userToRole.setRole(role);
         return userToRole;
     }
+
+    public String getRoleName(){
+        return this.role.getValue().name();
+    }
 }
