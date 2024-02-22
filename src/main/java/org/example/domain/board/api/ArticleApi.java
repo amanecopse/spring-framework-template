@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/board/articles")
 @RequiredArgsConstructor
-public class ArticleController {
+public class ArticleApi {
     private final ArticleService articleService;
     @GetMapping
     public ResponseEntity<ApiResponse<List<String>>> getAll() {

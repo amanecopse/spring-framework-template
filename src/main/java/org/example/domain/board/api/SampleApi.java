@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/board/samples")
 @RequiredArgsConstructor
-public class SampleController {
+public class SampleApi {
     private final SampleService sampleService;
 
     @GetMapping
