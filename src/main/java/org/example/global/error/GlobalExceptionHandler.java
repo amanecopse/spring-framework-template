@@ -77,7 +77,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 //    }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    ResponseEntity<ApiResponse<Void>> handleForbiddenException(EntityNotFoundException exception) {
+    ResponseEntity<ApiResponse<Void>> handleNotFoundException(EntityNotFoundException exception) {
         logger.error("message", exception);
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error(exception.getMessage()));
