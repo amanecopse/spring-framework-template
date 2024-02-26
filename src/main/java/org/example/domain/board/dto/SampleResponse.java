@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.example.domain.board.domain.Sample;
 
 @AllArgsConstructor
 @Data

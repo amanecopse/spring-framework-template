@@ -13,9 +13,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.domain.model.BaseEntity;
 import org.example.domain.model.RoleEnum;
 import org.example.domain.model.RoleEnumConverter;
-import org.example.domain.model.BaseEntity;
 
 @Getter
 @Setter
