@@ -4,7 +4,7 @@ import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.member.dao.RoleDao;
 import org.example.domain.member.domain.Role;
-import org.example.domain.member.model.RoleEnum;
+import org.example.domain.model.RoleEnum;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;

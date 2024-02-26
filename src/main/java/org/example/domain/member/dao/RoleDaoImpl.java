@@ -5,7 +5,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.member.domain.QRole;
 import org.example.domain.member.domain.Role;
-import org.example.domain.member.model.RoleEnum;
+import org.example.domain.model.RoleEnum;
 
 @RequiredArgsConstructor
 public class RoleDaoImpl implements RoleDaoCustom {

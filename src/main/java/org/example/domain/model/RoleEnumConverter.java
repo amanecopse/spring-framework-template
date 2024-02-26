@@ -1,4 +1,4 @@
-package org.example.domain.member.model;
+package org.example.domain.model;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

@@ -1,4 +1,4 @@
-package org.example.domain.member.model;
+package org.example.domain.model;
 
 import java.util.Collections;
 import java.util.Map;
