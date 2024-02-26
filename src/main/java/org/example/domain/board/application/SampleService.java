@@ -23,16 +23,16 @@ public class SampleService {
     private final SampleMapper sampleMapper;
 
     public Page<SampleResponse> getAll(Pageable pageable) {
-        return sampleDao.findAll(pageable).map(SampleResponse::new);
+        return sampleDao.findAll(pageable).map(sampleMapper::toResponse);
     }
 
     public Page<SampleResponse> search(SampleSearchRequest request, SearchFilter filter, Pageable pageable) {
-        return sampleDao.search(request, filter, pageable).map(SampleResponse::new);
+        return sampleDao.search(request, filter, pageable).map(sampleMapper::toResponse);
     }
 
     public SampleResponse getById(Long id) {
         Sample sample = findById(id);
-        return new SampleResponse(sample);
+        return sampleMapper.toResponse(sample);
     }
 
     public void save(SampleCreateRequest request) {

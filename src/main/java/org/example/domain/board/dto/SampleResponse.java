@@ -22,12 +22,4 @@ public class SampleResponse {
     String title;
 
     String content;
-
-    public SampleResponse(Sample sample) {
-        this.id = sample.getId();
-        this.createdAt = sample.getCreatedAt();
-        this.updatedAt = sample.getUpdatedAt();
-        this.title = sample.getTitle();
-        this.content = sample.getContent();
-    }
 }

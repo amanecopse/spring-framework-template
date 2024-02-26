@@ -13,6 +13,8 @@ public interface SampleMapper {
 
     Sample toEntity(SampleCreateRequest request);
 
+    SampleResponse toResponse(Sample sample);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     void updateSampleFromDto(SampleUpdateRequest request, @MappingTarget Sample sample);
 }
