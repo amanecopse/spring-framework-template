@@ -26,19 +26,19 @@ public class DbConfig {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(env.getProperty("db.jdbcDriver"));
-        dataSource.setUrl(env.getProperty("db.jdbcUrl"));
-        dataSource.setUsername(env.getProperty("db.userName"));
+        dataSource.setDriverClassName(env.getProperty("db.jdbc-driver"));
+        dataSource.setUrl(env.getProperty("db.jdbc-url"));
+        dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
-        dataSource.setMaxActive(Util.getIntProperty(env, "db.maxActive"));
+        dataSource.setMaxActive(Util.getIntProperty(env, "db.max-active"));
         return dataSource;
     }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(Util.getBooleanProperty(env, "db.generateDdl"));
-        vendorAdapter.setShowSql(Util.getBooleanProperty(env, "db.showSql"));
+        vendorAdapter.setGenerateDdl(Util.getBooleanProperty(env, "db.generate-ddl"));
+        vendorAdapter.setShowSql(Util.getBooleanProperty(env, "db.show-sql"));
 
         Properties props = new Properties();
         props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
@@ -46,7 +46,7 @@ public class DbConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(env.getProperty("rootPackage") + ".domain.**.domain");
+        factory.setPackagesToScan(env.getProperty("root-package") + ".domain.**.domain");
         factory.setDataSource(dataSource());
         factory.setJpaProperties(props);
         return factory;
