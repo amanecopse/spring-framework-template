@@ -35,8 +35,9 @@ public class SampleService {
         return sampleMapper.toResponse(sample);
     }
 
-    public void save(SampleCreateRequest request) {
-        sampleDao.save(sampleMapper.toEntity(request));
+    public Long save(SampleCreateRequest request) {
+        Sample sample = sampleDao.save(sampleMapper.toEntity(request));
+        return sample.getId();
     }
 
     @Transactional
