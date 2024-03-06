@@ -16,9 +16,7 @@ import org.example.domain.model.BaseEntity;
 
 @Getter
 @Entity
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(
         uniqueConstraints = {
                 @UniqueConstraint(
@@ -35,11 +33,17 @@ public class UserToRole extends BaseEntity {
     @JoinColumn(nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Role role;
 
+    @Builder
+    public UserToRole(User user, Role role) {
+        setUser(user);
+        setRole(role);
+    }
+
     public static UserToRole relate(User user, Role role) {
-        UserToRole userToRole = new UserToRole();
-        userToRole.setUser(user);
-        userToRole.setRole(role);
-        return userToRole;
+        return UserToRole.builder()
+                .user(user)
+                .role(role)
+                .build();
     }
 
     public void setUser(User user) {

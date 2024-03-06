@@ -20,9 +20,7 @@ import org.example.domain.model.RoleEnumConverter;
 @Getter
 @Setter
 @Entity
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Role extends BaseEntity {
     @Column(unique = true)
     @Convert(converter = RoleEnumConverter.class)
@@ -31,4 +29,9 @@ public class Role extends BaseEntity {
     @OneToMany(mappedBy = "role", cascade = {CascadeType.PERSIST,
             CascadeType.REMOVE}, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<UserToRole> userToRoles = new ArrayList<>();
+
+    @Builder
+    public Role(RoleEnum value) {
+        this.value = value;
+    }
 }
