@@ -18,11 +18,14 @@
     <!-- static 정적 자원( css, js, img ) -->
     <mvc:resources location="classpath:/static/" mapping="/static/**"/>
 
-    <context:component-scan base-package="org.example.global.config.mvc" use-default-filters="true"/>
+    <!--  MVC 관련 스캔  -->
+    <context:component-scan base-package="org.example.global.config.mvc"/>
 
-    <context:component-scan base-package="org.example" use-default-filters="true">
-        <!-- Controller 만 자동 스캔에 포함 시킨다. -->
+    <!-- Controller, RestController 스캔 -->
+    <context:component-scan base-package="org.example" use-default-filters="false">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.RestController"/>
     </context:component-scan>
 </beans>
