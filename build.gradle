@@ -70,6 +70,12 @@ dependencies {
     // DBCP
     implementation "commons-dbcp:commons-dbcp:1.4"
 
+    // Redis client Lettuce
+    implementation "io.lettuce:lettuce-core:6.3.1.RELEASE"
+
+    // Spring data Redis
+    implementation "org.springframework.data:spring-data-redis:3.0.3"
+
     // JPA
     implementation "org.springframework.data:spring-data-commons:3.0.3"
     implementation "org.springframework.data:spring-data-jpa:3.0.3"
